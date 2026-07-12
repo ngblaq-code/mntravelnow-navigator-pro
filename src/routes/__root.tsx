@@ -91,6 +91,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           slogan: SITE.tagline,
         }),
       },
+      {
+        // Travelpayouts / emrldco loader — injected once via root head.
+        // The IIFE appends the real <script> to document.head asynchronously,
+        // so it never blocks rendering. A window flag guards against duplicate
+        // injection across client-side route changes.
+        id: "travelpayouts-emrldco-loader",
+        children:
+          "(function(){if(window.__tp_emrldco_loaded)return;window.__tp_emrldco_loaded=true;var s=document.createElement('script');s.async=1;s.src='https://emrldco.com/NTQ3MTk4.js?t=547198';document.head.appendChild(s);})();",
+      },
     ],
   }),
   shellComponent: RootShell,
