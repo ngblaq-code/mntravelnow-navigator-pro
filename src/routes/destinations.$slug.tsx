@@ -109,7 +109,7 @@ function DestinationPage() {
           <section>
             <h2 className="text-2xl font-bold">Top Attractions</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
-              {d.attractions.map((a) => (
+              {d.attractions.map((a: {name:string;description:string}) => (
                 <div key={a.name} className="rounded-2xl bg-card border border-border p-5">
                   <div className="flex items-center gap-2 text-accent"><Star className="h-4 w-4 fill-current" /><h3 className="font-semibold text-foreground">{a.name}</h3></div>
                   <p className="mt-2 text-sm text-muted-foreground">{a.description}</p>
@@ -123,21 +123,21 @@ function DestinationPage() {
           <section>
             <h2 className="text-2xl font-bold">Things to Do</h2>
             <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-              {d.things.map((t) => <li key={t} className="rounded-lg bg-surface px-4 py-3 text-sm">✨ {t}</li>)}
+              {d.things.map((t: string) => <li key={t} className="rounded-lg bg-surface px-4 py-3 text-sm">✨ {t}</li>)}
             </ul>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold">Travel Tips</h2>
             <ul className="mt-4 space-y-2">
-              {d.tips.map((t) => <li key={t} className="rounded-lg bg-surface px-4 py-3 text-sm">• {t}</li>)}
+              {d.tips.map((t: string) => <li key={t} className="rounded-lg bg-surface px-4 py-3 text-sm">• {t}</li>)}
             </ul>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
             <div className="mt-4 space-y-3">
-              {d.faqs.map((f) => (
+              {d.faqs.map((f: {q:string;a:string}) => (
                 <details key={f.q} className="rounded-xl bg-card border border-border p-4">
                   <summary className="font-semibold cursor-pointer">{f.q}</summary>
                   <p className="mt-2 text-sm text-muted-foreground">{f.a}</p>

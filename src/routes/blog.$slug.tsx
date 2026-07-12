@@ -75,7 +75,7 @@ function BlogPost() {
           <div className="rounded-2xl bg-surface p-5 mb-8">
             <h2 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Table of contents</h2>
             <ol className="mt-3 space-y-1.5 text-sm">
-              {p.content.map((s, i) => (
+              {p.content.map((s: {heading:string;body:string}, i: number) => (
                 <li key={i}><a href={`#s-${i}`} className="text-primary hover:underline">{s.heading}</a></li>
               ))}
             </ol>
@@ -83,7 +83,7 @@ function BlogPost() {
 
           <div className="prose max-w-none">
             <p className="text-lg text-foreground/90 leading-relaxed">{p.excerpt}</p>
-            {p.content.map((s, i) => (
+            {p.content.map((s: {heading:string;body:string}, i: number) => (
               <div key={i}>
                 <h2 id={`s-${i}`} className="mt-8 text-2xl font-bold">{s.heading}</h2>
                 <p className="mt-3 text-foreground/90 leading-relaxed">{s.body}</p>
@@ -94,7 +94,7 @@ function BlogPost() {
 
           <div className="mt-10 rounded-2xl bg-surface p-5 flex items-center gap-4">
             <div className="h-12 w-12 rounded-full bg-primary/10 text-primary grid place-items-center font-bold">
-              {p.author.split(" ").map((n) => n[0]).join("")}
+              {p.author.split(" ").map((n: string) => n[0]).join("")}
             </div>
             <div>
               <div className="font-semibold">Written by {p.author}</div>

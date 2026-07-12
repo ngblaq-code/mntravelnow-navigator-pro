@@ -16,6 +16,10 @@ import { Route as FlightsRouteImport } from './routes/flights'
 import { Route as CarRentalsRouteImport } from './routes/car-rentals'
 import { Route as AirportTransfersRouteImport } from './routes/airport-transfers'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DestinationsIndexRouteImport } from './routes/destinations.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as DestinationsSlugRouteImport } from './routes/destinations.$slug'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const TravelInsuranceRoute = TravelInsuranceRouteImport.update({
   id: '/travel-insurance',
@@ -52,6 +56,26 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DestinationsIndexRoute = DestinationsIndexRouteImport.update({
+  id: '/destinations/',
+  path: '/destinations/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DestinationsSlugRoute = DestinationsSlugRouteImport.update({
+  id: '/destinations/$slug',
+  path: '/destinations/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +85,10 @@ export interface FileRoutesByFullPath {
   '/hotels': typeof HotelsRoute
   '/tours': typeof ToursRoute
   '/travel-insurance': typeof TravelInsuranceRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/destinations/$slug': typeof DestinationsSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/destinations/': typeof DestinationsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +98,10 @@ export interface FileRoutesByTo {
   '/hotels': typeof HotelsRoute
   '/tours': typeof ToursRoute
   '/travel-insurance': typeof TravelInsuranceRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/destinations/$slug': typeof DestinationsSlugRoute
+  '/blog': typeof BlogIndexRoute
+  '/destinations': typeof DestinationsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +112,10 @@ export interface FileRoutesById {
   '/hotels': typeof HotelsRoute
   '/tours': typeof ToursRoute
   '/travel-insurance': typeof TravelInsuranceRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/destinations/$slug': typeof DestinationsSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/destinations/': typeof DestinationsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +127,10 @@ export interface FileRouteTypes {
     | '/hotels'
     | '/tours'
     | '/travel-insurance'
+    | '/blog/$slug'
+    | '/destinations/$slug'
+    | '/blog/'
+    | '/destinations/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +140,10 @@ export interface FileRouteTypes {
     | '/hotels'
     | '/tours'
     | '/travel-insurance'
+    | '/blog/$slug'
+    | '/destinations/$slug'
+    | '/blog'
+    | '/destinations'
   id:
     | '__root__'
     | '/'
@@ -109,6 +153,10 @@ export interface FileRouteTypes {
     | '/hotels'
     | '/tours'
     | '/travel-insurance'
+    | '/blog/$slug'
+    | '/destinations/$slug'
+    | '/blog/'
+    | '/destinations/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +167,10 @@ export interface RootRouteChildren {
   HotelsRoute: typeof HotelsRoute
   ToursRoute: typeof ToursRoute
   TravelInsuranceRoute: typeof TravelInsuranceRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  DestinationsSlugRoute: typeof DestinationsSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  DestinationsIndexRoute: typeof DestinationsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +224,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/destinations/': {
+      id: '/destinations/'
+      path: '/destinations'
+      fullPath: '/destinations/'
+      preLoaderRoute: typeof DestinationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/destinations/$slug': {
+      id: '/destinations/$slug'
+      path: '/destinations/$slug'
+      fullPath: '/destinations/$slug'
+      preLoaderRoute: typeof DestinationsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +263,10 @@ const rootRouteChildren: RootRouteChildren = {
   HotelsRoute: HotelsRoute,
   ToursRoute: ToursRoute,
   TravelInsuranceRoute: TravelInsuranceRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  DestinationsSlugRoute: DestinationsSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  DestinationsIndexRoute: DestinationsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
