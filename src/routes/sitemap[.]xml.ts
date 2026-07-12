@@ -1,0 +1,65 @@
+import { createFileRoute } from "@tanstack/react-router";
+import type {} from "@tanstack/react-start";
+import { DESTINATIONS } from "@/data/destinations";
+import { BLOG_POSTS } from "@/data/content";
+
+// TODO: replace with your project URL once a project name or custom domain is set.
+const BASE_URL = "";
+
+interface SitemapEntry {
+  path: string;
+  changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
+  priority?: string;
+}
+
+export const Route = createFileRoute("/sitemap.xml")({
+  server: {
+    handlers: {
+      GET: async () => {
+        const staticEntries: SitemapEntry[] = [
+          { path: "/", changefreq: "weekly", priority: "1.0" },
+          { path: "/flights", changefreq: "weekly", priority: "0.9" },
+          { path: "/hotels", changefreq: "weekly", priority: "0.9" },
+          { path: "/car-rentals", changefreq: "weekly", priority: "0.8" },
+          { path: "/airport-transfers", changefreq: "weekly", priority: "0.8" },
+          { path: "/tours", changefreq: "weekly", priority: "0.8" },
+          { path: "/travel-insurance", changefreq: "monthly", priority: "0.7" },
+          { path: "/destinations", changefreq: "weekly", priority: "0.9" },
+          { path: "/blog", changefreq: "weekly", priority: "0.8" },
+          { path: "/about", changefreq: "monthly", priority: "0.5" },
+          { path: "/contact", changefreq: "monthly", priority: "0.5" },
+          { path: "/privacy", changefreq: "yearly", priority: "0.3" },
+          { path: "/terms", changefreq: "yearly", priority: "0.3" },
+          { path: "/cookies", changefreq: "yearly", priority: "0.3" },
+          { path: "/affiliate-disclosure", changefreq: "yearly", priority: "0.3" },
+          { path: "/disclaimer", changefreq: "yearly", priority: "0.3" },
+        ];
+        const destEntries: SitemapEntry[] = DESTINATIONS.map((d) => ({ path: `/destinations/${d.slug}`, changefreq: "monthly", priority: "0.7" }));
+        const blogEntries: SitemapEntry[] = BLOG_POSTS.map((p) => ({ path: `/blog/${p.slug}`, changefreq: "monthly", priority: "0.6" }));
+        const entries = [...staticEntries, ...destEntries, ...blogEntries];
+
+        const urls = entries.map((e) => [
+          `  <url>`,
+          `    <loc>${BASE_URL}${e.path}</loc>`,
+          e.changefreq ? `    <changefreq>${e.changefreq}</changefreq>` : null,
+          e.priority ? `    <priority>${e.priority}</priority>` : null,
+          `  </url>`,
+        ].filter(Boolean).join("\n"));
+
+        const xml = [
+          `<?xml version="1.0" encoding="UTF-8"?>`,
+          `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`,
+          ...urls,
+          `</urlset>`,
+        ].join("\n");
+
+        return new Response(xml, {
+          headers: {
+            "Content-Type": "application/xml",
+            "Cache-Control": "public, max-age=3600",
+          },
+        });
+      },
+    },
+  },
+});
