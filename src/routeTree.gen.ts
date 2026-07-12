@@ -9,38 +9,374 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TravelInsuranceRouteImport } from './routes/travel-insurance'
+import { Route as ToursRouteImport } from './routes/tours'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as HotelsRouteImport } from './routes/hotels'
+import { Route as FlightsRouteImport } from './routes/flights'
+import { Route as DisclaimerRouteImport } from './routes/disclaimer'
+import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CarRentalsRouteImport } from './routes/car-rentals'
+import { Route as AirportTransfersRouteImport } from './routes/airport-transfers'
+import { Route as AffiliateDisclosureRouteImport } from './routes/affiliate-disclosure'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DestinationsIndexRouteImport } from './routes/destinations.index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
+import { Route as DestinationsSlugRouteImport } from './routes/destinations.$slug'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
+const TravelInsuranceRoute = TravelInsuranceRouteImport.update({
+  id: '/travel-insurance',
+  path: '/travel-insurance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToursRoute = ToursRouteImport.update({
+  id: '/tours',
+  path: '/tours',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HotelsRoute = HotelsRouteImport.update({
+  id: '/hotels',
+  path: '/hotels',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FlightsRoute = FlightsRouteImport.update({
+  id: '/flights',
+  path: '/flights',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DisclaimerRoute = DisclaimerRouteImport.update({
+  id: '/disclaimer',
+  path: '/disclaimer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarRentalsRoute = CarRentalsRouteImport.update({
+  id: '/car-rentals',
+  path: '/car-rentals',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AirportTransfersRoute = AirportTransfersRouteImport.update({
+  id: '/airport-transfers',
+  path: '/airport-transfers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AffiliateDisclosureRoute = AffiliateDisclosureRouteImport.update({
+  id: '/affiliate-disclosure',
+  path: '/affiliate-disclosure',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DestinationsIndexRoute = DestinationsIndexRouteImport.update({
+  id: '/destinations/',
+  path: '/destinations/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DestinationsSlugRoute = DestinationsSlugRouteImport.update({
+  id: '/destinations/$slug',
+  path: '/destinations/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/affiliate-disclosure': typeof AffiliateDisclosureRoute
+  '/airport-transfers': typeof AirportTransfersRoute
+  '/car-rentals': typeof CarRentalsRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/flights': typeof FlightsRoute
+  '/hotels': typeof HotelsRoute
+  '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
+  '/tours': typeof ToursRoute
+  '/travel-insurance': typeof TravelInsuranceRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/destinations/$slug': typeof DestinationsSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/destinations/': typeof DestinationsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/affiliate-disclosure': typeof AffiliateDisclosureRoute
+  '/airport-transfers': typeof AirportTransfersRoute
+  '/car-rentals': typeof CarRentalsRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/flights': typeof FlightsRoute
+  '/hotels': typeof HotelsRoute
+  '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
+  '/tours': typeof ToursRoute
+  '/travel-insurance': typeof TravelInsuranceRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/destinations/$slug': typeof DestinationsSlugRoute
+  '/blog': typeof BlogIndexRoute
+  '/destinations': typeof DestinationsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/affiliate-disclosure': typeof AffiliateDisclosureRoute
+  '/airport-transfers': typeof AirportTransfersRoute
+  '/car-rentals': typeof CarRentalsRoute
+  '/contact': typeof ContactRoute
+  '/cookies': typeof CookiesRoute
+  '/disclaimer': typeof DisclaimerRoute
+  '/flights': typeof FlightsRoute
+  '/hotels': typeof HotelsRoute
+  '/privacy': typeof PrivacyRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
+  '/tours': typeof ToursRoute
+  '/travel-insurance': typeof TravelInsuranceRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/destinations/$slug': typeof DestinationsSlugRoute
+  '/blog/': typeof BlogIndexRoute
+  '/destinations/': typeof DestinationsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/affiliate-disclosure'
+    | '/airport-transfers'
+    | '/car-rentals'
+    | '/contact'
+    | '/cookies'
+    | '/disclaimer'
+    | '/flights'
+    | '/hotels'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/terms'
+    | '/tours'
+    | '/travel-insurance'
+    | '/blog/$slug'
+    | '/destinations/$slug'
+    | '/blog/'
+    | '/destinations/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/affiliate-disclosure'
+    | '/airport-transfers'
+    | '/car-rentals'
+    | '/contact'
+    | '/cookies'
+    | '/disclaimer'
+    | '/flights'
+    | '/hotels'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/terms'
+    | '/tours'
+    | '/travel-insurance'
+    | '/blog/$slug'
+    | '/destinations/$slug'
+    | '/blog'
+    | '/destinations'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/affiliate-disclosure'
+    | '/airport-transfers'
+    | '/car-rentals'
+    | '/contact'
+    | '/cookies'
+    | '/disclaimer'
+    | '/flights'
+    | '/hotels'
+    | '/privacy'
+    | '/sitemap.xml'
+    | '/terms'
+    | '/tours'
+    | '/travel-insurance'
+    | '/blog/$slug'
+    | '/destinations/$slug'
+    | '/blog/'
+    | '/destinations/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  AffiliateDisclosureRoute: typeof AffiliateDisclosureRoute
+  AirportTransfersRoute: typeof AirportTransfersRoute
+  CarRentalsRoute: typeof CarRentalsRoute
+  ContactRoute: typeof ContactRoute
+  CookiesRoute: typeof CookiesRoute
+  DisclaimerRoute: typeof DisclaimerRoute
+  FlightsRoute: typeof FlightsRoute
+  HotelsRoute: typeof HotelsRoute
+  PrivacyRoute: typeof PrivacyRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TermsRoute: typeof TermsRoute
+  ToursRoute: typeof ToursRoute
+  TravelInsuranceRoute: typeof TravelInsuranceRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  DestinationsSlugRoute: typeof DestinationsSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  DestinationsIndexRoute: typeof DestinationsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/travel-insurance': {
+      id: '/travel-insurance'
+      path: '/travel-insurance'
+      fullPath: '/travel-insurance'
+      preLoaderRoute: typeof TravelInsuranceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tours': {
+      id: '/tours'
+      path: '/tours'
+      fullPath: '/tours'
+      preLoaderRoute: typeof ToursRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hotels': {
+      id: '/hotels'
+      path: '/hotels'
+      fullPath: '/hotels'
+      preLoaderRoute: typeof HotelsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/flights': {
+      id: '/flights'
+      path: '/flights'
+      fullPath: '/flights'
+      preLoaderRoute: typeof FlightsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/disclaimer': {
+      id: '/disclaimer'
+      path: '/disclaimer'
+      fullPath: '/disclaimer'
+      preLoaderRoute: typeof DisclaimerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/car-rentals': {
+      id: '/car-rentals'
+      path: '/car-rentals'
+      fullPath: '/car-rentals'
+      preLoaderRoute: typeof CarRentalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/airport-transfers': {
+      id: '/airport-transfers'
+      path: '/airport-transfers'
+      fullPath: '/airport-transfers'
+      preLoaderRoute: typeof AirportTransfersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/affiliate-disclosure': {
+      id: '/affiliate-disclosure'
+      path: '/affiliate-disclosure'
+      fullPath: '/affiliate-disclosure'
+      preLoaderRoute: typeof AffiliateDisclosureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +384,58 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/destinations/': {
+      id: '/destinations/'
+      path: '/destinations'
+      fullPath: '/destinations/'
+      preLoaderRoute: typeof DestinationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/destinations/$slug': {
+      id: '/destinations/$slug'
+      path: '/destinations/$slug'
+      fullPath: '/destinations/$slug'
+      preLoaderRoute: typeof DestinationsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  AffiliateDisclosureRoute: AffiliateDisclosureRoute,
+  AirportTransfersRoute: AirportTransfersRoute,
+  CarRentalsRoute: CarRentalsRoute,
+  ContactRoute: ContactRoute,
+  CookiesRoute: CookiesRoute,
+  DisclaimerRoute: DisclaimerRoute,
+  FlightsRoute: FlightsRoute,
+  HotelsRoute: HotelsRoute,
+  PrivacyRoute: PrivacyRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TermsRoute: TermsRoute,
+  ToursRoute: ToursRoute,
+  TravelInsuranceRoute: TravelInsuranceRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  DestinationsSlugRoute: DestinationsSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  DestinationsIndexRoute: DestinationsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
