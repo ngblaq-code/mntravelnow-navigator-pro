@@ -1,12 +1,12 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { AdSlot } from "@/components/AdSlot";
 import { AFFILIATE_LINK_ATTRS, getAffiliateLink } from "@/config/affiliates";
-import { DESTINATIONS, getDestination } from "@/data/destinations";
+import { getDestinationBySlug, getRelatedDestinations } from "@/lib/cms/destinations";
 import { CalendarDays, CloudSun, MapPin, Wallet, Bus, Star } from "lucide-react";
 
 export const Route = createFileRoute("/destinations/$slug")({
   loader: ({ params }) => {
-    const d = getDestination(params.slug);
+    const d = getDestinationBySlug(params.slug);
     if (!d) throw notFound();
     return d;
   },
@@ -57,7 +57,7 @@ function NotFound() {
 
 function DestinationPage() {
   const d = Route.useLoaderData();
-  const related = DESTINATIONS.filter((x) => x.slug !== d.slug).slice(0, 4);
+  const related = getRelatedDestinations(d.slug, 4);
 
   return (
     <>

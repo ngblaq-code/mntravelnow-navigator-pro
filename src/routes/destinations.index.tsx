@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AdSlot } from "@/components/AdSlot";
 import { DestinationCard } from "@/components/DestinationCard";
 import { PageHeader } from "@/components/Section";
-import { DESTINATIONS } from "@/data/destinations";
+import { getAllDestinations } from "@/lib/cms/destinations";
 
 export const Route = createFileRoute("/destinations/")({
   head: () => ({
@@ -24,7 +24,7 @@ function DestinationsIndex() {
       <PageHeader title="Destinations" subtitle="Handpicked guides to the world's most inspiring places to visit." />
       <section className="container-page mt-12">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {DESTINATIONS.map((d) => <DestinationCard key={d.slug} d={d} />)}
+          {getAllDestinations().map((d) => <DestinationCard key={d.slug} d={d} />)}
         </div>
       </section>
       <div className="container-page mt-14"><AdSlot size="leaderboard" /></div>

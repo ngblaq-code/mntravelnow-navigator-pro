@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AdSlot } from "@/components/AdSlot";
 import { PageHeader } from "@/components/Section";
-import { BLOG_POSTS } from "@/data/content";
+import { getAllPosts } from "@/lib/cms/posts";
 import { Calendar, User } from "lucide-react";
 
 export const Route = createFileRoute("/blog/")({
@@ -33,7 +33,7 @@ function BlogIndex() {
 
       <section className="container-page mt-10 grid gap-8 lg:grid-cols-[1fr_320px]">
         <div className="grid gap-6 sm:grid-cols-2">
-          {BLOG_POSTS.map((p) => (
+          {getAllPosts().map((p) => (
             <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }}
               className="group rounded-2xl overflow-hidden bg-card shadow-card hover:shadow-elevated transition">
               <div className="aspect-[16/10] bg-muted overflow-hidden">

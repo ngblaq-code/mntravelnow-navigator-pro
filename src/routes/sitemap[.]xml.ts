@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { DESTINATIONS } from "@/data/destinations";
-import { BLOG_POSTS } from "@/data/content";
+import { getAllDestinations } from "@/lib/cms/destinations";
+import { getAllPosts } from "@/lib/cms/posts";
 
 // TODO: replace with your project URL once a project name or custom domain is set.
 const BASE_URL = "";
@@ -34,8 +34,8 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/affiliate-disclosure", changefreq: "yearly", priority: "0.3" },
           { path: "/disclaimer", changefreq: "yearly", priority: "0.3" },
         ];
-        const destEntries: SitemapEntry[] = DESTINATIONS.map((d) => ({ path: `/destinations/${d.slug}`, changefreq: "monthly", priority: "0.7" }));
-        const blogEntries: SitemapEntry[] = BLOG_POSTS.map((p) => ({ path: `/blog/${p.slug}`, changefreq: "monthly", priority: "0.6" }));
+        const destEntries: SitemapEntry[] = getAllDestinations().map((d) => ({ path: `/destinations/${d.slug}`, changefreq: "monthly", priority: "0.7" }));
+        const blogEntries: SitemapEntry[] = getAllPosts().map((p) => ({ path: `/blog/${p.slug}`, changefreq: "monthly", priority: "0.6" }));
         const entries = [...staticEntries, ...destEntries, ...blogEntries];
 
         const urls = entries.map((e) => [
