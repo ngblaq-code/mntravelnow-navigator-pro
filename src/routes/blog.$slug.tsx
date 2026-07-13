@@ -1,12 +1,12 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { AdSlot } from "@/components/AdSlot";
 import { Newsletter } from "@/components/Newsletter";
-import { BLOG_POSTS, getPost } from "@/data/content";
+import { getPostBySlug, getRelatedPosts } from "@/lib/cms/posts";
 import { Calendar, User } from "lucide-react";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
-    const p = getPost(params.slug);
+    const p = getPostBySlug(params.slug);
     if (!p) throw notFound();
     return p;
   },
@@ -49,7 +49,7 @@ export const Route = createFileRoute("/blog/$slug")({
 
 function BlogPost() {
   const p = Route.useLoaderData();
-  const related = BLOG_POSTS.filter((x) => x.slug !== p.slug).slice(0, 3);
+  const related = getRelatedPosts(p.slug, 3);
 
   return (
     <article className="pb-16">
