@@ -98,7 +98,28 @@
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
+
+  /* Ensure form controls have visible text in both themes */
+  input, textarea, select {
+    color: var(--color-foreground);
+    caret-color: var(--color-foreground);
+  }
+  input::placeholder, textarea::placeholder {
+    color: var(--color-muted-foreground);
+    opacity: 1;
+  }
+  /* Preserve visible text through browser autofill */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-text-fill-color: var(--color-foreground);
+    caret-color: var(--color-foreground);
+    transition: background-color 9999s ease-in-out 0s;
+  }
 }
+
 
 @utility container-page {
   width: 100%;
