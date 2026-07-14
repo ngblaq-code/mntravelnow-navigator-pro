@@ -5,10 +5,11 @@ import { getPostBySlug, getRelatedPosts } from "@/lib/cms/posts";
 import { Calendar, User } from "lucide-react";
 
 export const Route = createFileRoute("/blog/$slug")({
-  loader: ({ params }) => {
-    const p = getPostBySlug(params.slug);
-    if (!p) throw notFound();
-    return p;
+  loader: async ({ params }) => {
+    const post = await getPostBySlug(params.slug);
+    if (!post) throw notFound();
+    const related = await getRelatedPosts(params.slug, 3);
+    return { post, related };
   },
   head: ({ loaderData, params }) => {
     if (!loaderData) return { meta: [{ title: "Article — MnTravelNow" }, { name: "robots", content: "noindex" }] };
