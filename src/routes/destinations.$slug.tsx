@@ -5,14 +5,15 @@ import { getDestinationBySlug, getRelatedDestinations, type Destination } from "
 import { CalendarDays, CloudSun, MapPin, Wallet, Bus, Star } from "lucide-react";
 
 export const Route = createFileRoute("/destinations/$slug")({
-  loader: ({ params }) => {
-    const d = getDestinationBySlug(params.slug);
-    if (!d) throw notFound();
-    return d;
+  loader: async ({ params }) => {
+    const dest = await getDestinationBySlug(params.slug);
+    if (!dest) throw notFound();
+    const related = await getRelatedDestinations(params.slug, 4);
+    return { dest, related };
   },
   head: ({ loaderData, params }) => {
     if (!loaderData) return { meta: [{ title: "Destination — MnTravelNow" }, { name: "robots", content: "noindex" }] };
-    const d = loaderData;
+    const d = loaderData.dest;
     const title = `${d.name} Travel Guide — Things to Do, Hotels & Flights | MnTravelNow`;
     const desc = `Plan your trip to ${d.name}: best time to visit, top attractions, hotels, flights and local tips.`;
     return {
