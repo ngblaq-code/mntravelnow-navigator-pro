@@ -5,6 +5,7 @@ import { getAllPosts } from "@/lib/cms/posts";
 import { Calendar, User } from "lucide-react";
 
 export const Route = createFileRoute("/blog/")({
+  loader: () => getAllPosts(),
   head: () => ({
     meta: [
       { title: "Travel Blog — Tips, Guides & Inspiration | MnTravelNow" },
