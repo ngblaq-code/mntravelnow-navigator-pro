@@ -1,7 +1,7 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { AdSlot } from "@/components/AdSlot";
 import { Newsletter } from "@/components/Newsletter";
-import { getPostBySlug, getRelatedPosts } from "@/lib/cms/posts";
+import { getPostBySlug, getRelatedPosts, type BlogPost as BlogPostType } from "@/lib/cms/posts";
 import { Calendar, User } from "lucide-react";
 
 export const Route = createFileRoute("/blog/$slug")({
