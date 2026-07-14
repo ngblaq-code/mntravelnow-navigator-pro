@@ -34,8 +34,9 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/affiliate-disclosure", changefreq: "yearly", priority: "0.3" },
           { path: "/disclaimer", changefreq: "yearly", priority: "0.3" },
         ];
-        const destEntries: SitemapEntry[] = getAllDestinations().map((d) => ({ path: `/destinations/${d.slug}`, changefreq: "monthly", priority: "0.7" }));
-        const blogEntries: SitemapEntry[] = getAllPosts().map((p) => ({ path: `/blog/${p.slug}`, changefreq: "monthly", priority: "0.6" }));
+        const [dests, posts] = await Promise.all([getAllDestinations(), getAllPosts()]);
+        const destEntries: SitemapEntry[] = dests.map((d) => ({ path: `/destinations/${d.slug}`, changefreq: "monthly", priority: "0.7" }));
+        const blogEntries: SitemapEntry[] = posts.map((p) => ({ path: `/blog/${p.slug}`, changefreq: "monthly", priority: "0.6" }));
         const entries = [...staticEntries, ...destEntries, ...blogEntries];
 
         const urls = entries.map((e) => [

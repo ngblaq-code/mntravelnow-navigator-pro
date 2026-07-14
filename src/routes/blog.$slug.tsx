@@ -1,18 +1,19 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { AdSlot } from "@/components/AdSlot";
 import { Newsletter } from "@/components/Newsletter";
-import { getPostBySlug, getRelatedPosts } from "@/lib/cms/posts";
+import { getPostBySlug, getRelatedPosts, type BlogPost as BlogPostType } from "@/lib/cms/posts";
 import { Calendar, User } from "lucide-react";
 
 export const Route = createFileRoute("/blog/$slug")({
-  loader: ({ params }) => {
-    const p = getPostBySlug(params.slug);
-    if (!p) throw notFound();
-    return p;
+  loader: async ({ params }) => {
+    const post = await getPostBySlug(params.slug);
+    if (!post) throw notFound();
+    const related = await getRelatedPosts(params.slug, 3);
+    return { post, related };
   },
   head: ({ loaderData, params }) => {
     if (!loaderData) return { meta: [{ title: "Article — MnTravelNow" }, { name: "robots", content: "noindex" }] };
-    const p = loaderData;
+    const p = loaderData.post;
     return {
       meta: [
         { title: `${p.title} | MnTravelNow` },
@@ -48,8 +49,7 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 function BlogPost() {
-  const p = Route.useLoaderData();
-  const related = getRelatedPosts(p.slug, 3);
+  const { post: p, related } = Route.useLoaderData();
 
   return (
     <article className="pb-16">
@@ -105,7 +105,7 @@ function BlogPost() {
           <div className="mt-10">
             <h2 className="text-2xl font-bold">Related articles</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-3">
-              {related.map((r) => (
+              {related.map((r: BlogPostType) => (
                 <Link key={r.slug} to="/blog/$slug" params={{ slug: r.slug }} className="rounded-xl overflow-hidden bg-card shadow-card">
                   <img src={r.image} alt="" loading="lazy" width={600} height={400} className="aspect-[16/10] w-full object-cover" />
                   <div className="p-3">

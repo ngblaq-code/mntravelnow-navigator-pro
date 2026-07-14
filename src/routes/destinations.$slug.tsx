@@ -1,18 +1,19 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { AdSlot } from "@/components/AdSlot";
 import { AFFILIATE_LINK_ATTRS, getAffiliateLink } from "@/config/affiliates";
-import { getDestinationBySlug, getRelatedDestinations } from "@/lib/cms/destinations";
+import { getDestinationBySlug, getRelatedDestinations, type Destination } from "@/lib/cms/destinations";
 import { CalendarDays, CloudSun, MapPin, Wallet, Bus, Star } from "lucide-react";
 
 export const Route = createFileRoute("/destinations/$slug")({
-  loader: ({ params }) => {
-    const d = getDestinationBySlug(params.slug);
-    if (!d) throw notFound();
-    return d;
+  loader: async ({ params }) => {
+    const dest = await getDestinationBySlug(params.slug);
+    if (!dest) throw notFound();
+    const related = await getRelatedDestinations(params.slug, 4);
+    return { dest, related };
   },
   head: ({ loaderData, params }) => {
     if (!loaderData) return { meta: [{ title: "Destination — MnTravelNow" }, { name: "robots", content: "noindex" }] };
-    const d = loaderData;
+    const d = loaderData.dest;
     const title = `${d.name} Travel Guide — Things to Do, Hotels & Flights | MnTravelNow`;
     const desc = `Plan your trip to ${d.name}: best time to visit, top attractions, hotels, flights and local tips.`;
     return {
@@ -56,8 +57,9 @@ function NotFound() {
 }
 
 function DestinationPage() {
-  const d = Route.useLoaderData();
-  const related = getRelatedDestinations(d.slug, 4);
+  const { dest: d, related } = Route.useLoaderData();
+
+
 
   return (
     <>
@@ -163,7 +165,7 @@ function DestinationPage() {
           <div className="rounded-2xl bg-surface p-5">
             <h3 className="font-semibold">Related Destinations</h3>
             <ul className="mt-3 space-y-3">
-              {related.map((r) => (
+              {related.map((r: Destination) => (
                 <li key={r.slug}>
                   <Link to="/destinations/$slug" params={{ slug: r.slug }} className="flex gap-3 hover:opacity-80">
                     <img src={r.image} alt="" loading="lazy" width={80} height={80} className="h-16 w-16 rounded-lg object-cover shrink-0" />

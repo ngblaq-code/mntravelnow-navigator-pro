@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AdSlot } from "@/components/AdSlot";
 import { PageHeader } from "@/components/Section";
-import { getAllPosts } from "@/lib/cms/posts";
+import { getAllPosts, type BlogPost } from "@/lib/cms/posts";
 import { Calendar, User } from "lucide-react";
 
 export const Route = createFileRoute("/blog/")({
+  loader: () => getAllPosts(),
   head: () => ({
     meta: [
       { title: "Travel Blog — Tips, Guides & Inspiration | MnTravelNow" },
@@ -21,6 +22,7 @@ export const Route = createFileRoute("/blog/")({
 const CATEGORIES = ["All", "Travel Tips", "Budget Travel", "Luxury Travel", "Visa Guides", "Packing Lists", "Family Travel"];
 
 function BlogIndex() {
+  const posts = Route.useLoaderData() as BlogPost[];
   return (
     <>
       <PageHeader title="Travel Blog" subtitle="Practical tips, deep guides and inspiration for smarter travel." />
@@ -33,7 +35,7 @@ function BlogIndex() {
 
       <section className="container-page mt-10 grid gap-8 lg:grid-cols-[1fr_320px]">
         <div className="grid gap-6 sm:grid-cols-2">
-          {getAllPosts().map((p) => (
+          {posts.map((p) => (
             <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }}
               className="group rounded-2xl overflow-hidden bg-card shadow-card hover:shadow-elevated transition">
               <div className="aspect-[16/10] bg-muted overflow-hidden">
