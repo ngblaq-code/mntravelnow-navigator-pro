@@ -105,7 +105,7 @@ function BlogPost() {
           <div className="mt-10">
             <h2 className="text-2xl font-bold">Related articles</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-3">
-              {related.map((r: BlogPost) => (
+              {related.map((r: BlogPostType) => (
                 <Link key={r.slug} to="/blog/$slug" params={{ slug: r.slug }} className="rounded-xl overflow-hidden bg-card shadow-card">
                   <img src={r.image} alt="" loading="lazy" width={600} height={400} className="aspect-[16/10] w-full object-cover" />
                   <div className="p-3">
