@@ -22,6 +22,7 @@ export const Route = createFileRoute("/blog/")({
 const CATEGORIES = ["All", "Travel Tips", "Budget Travel", "Luxury Travel", "Visa Guides", "Packing Lists", "Family Travel"];
 
 function BlogIndex() {
+  const posts = Route.useLoaderData();
   return (
     <>
       <PageHeader title="Travel Blog" subtitle="Practical tips, deep guides and inspiration for smarter travel." />
@@ -34,7 +35,7 @@ function BlogIndex() {
 
       <section className="container-page mt-10 grid gap-8 lg:grid-cols-[1fr_320px]">
         <div className="grid gap-6 sm:grid-cols-2">
-          {getAllPosts().map((p) => (
+          {posts.map((p) => (
             <Link key={p.slug} to="/blog/$slug" params={{ slug: p.slug }}
               className="group rounded-2xl overflow-hidden bg-card shadow-card hover:shadow-elevated transition">
               <div className="aspect-[16/10] bg-muted overflow-hidden">
