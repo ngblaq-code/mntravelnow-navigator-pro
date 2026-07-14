@@ -165,7 +165,7 @@ function DestinationPage() {
           <div className="rounded-2xl bg-surface p-5">
             <h3 className="font-semibold">Related Destinations</h3>
             <ul className="mt-3 space-y-3">
-              {related.map((r) => (
+              {related.map((r: Destination) => (
                 <li key={r.slug}>
                   <Link to="/destinations/$slug" params={{ slug: r.slug }} className="flex gap-3 hover:opacity-80">
                     <img src={r.image} alt="" loading="lazy" width={80} height={80} className="h-16 w-16 rounded-lg object-cover shrink-0" />
