@@ -57,8 +57,9 @@ function NotFound() {
 }
 
 function DestinationPage() {
-  const d = Route.useLoaderData();
-  const related = getRelatedDestinations(d.slug, 4);
+  const { dest: d, related } = Route.useLoaderData();
+
+
 
   return (
     <>
