@@ -49,8 +49,7 @@ export const Route = createFileRoute("/blog/$slug")({
 });
 
 function BlogPost() {
-  const p = Route.useLoaderData();
-  const related = getRelatedPosts(p.slug, 3);
+  const { post: p, related } = Route.useLoaderData();
 
   return (
     <article className="pb-16">
