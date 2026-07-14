@@ -13,7 +13,7 @@ export const Route = createFileRoute("/blog/$slug")({
   },
   head: ({ loaderData, params }) => {
     if (!loaderData) return { meta: [{ title: "Article — MnTravelNow" }, { name: "robots", content: "noindex" }] };
-    const p = loaderData;
+    const p = loaderData.post;
     return {
       meta: [
         { title: `${p.title} | MnTravelNow` },
