@@ -22,7 +22,7 @@ export const Route = createFileRoute("/blog/")({
 const CATEGORIES = ["All", "Travel Tips", "Budget Travel", "Luxury Travel", "Visa Guides", "Packing Lists", "Family Travel"];
 
 function BlogIndex() {
-  const posts = Route.useLoaderData();
+  const posts = Route.useLoaderData() as BlogPost[];
   return (
     <>
       <PageHeader title="Travel Blog" subtitle="Practical tips, deep guides and inspiration for smarter travel." />
