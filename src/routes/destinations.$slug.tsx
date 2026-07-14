@@ -1,7 +1,7 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { AdSlot } from "@/components/AdSlot";
 import { AFFILIATE_LINK_ATTRS, getAffiliateLink } from "@/config/affiliates";
-import { getDestinationBySlug, getRelatedDestinations } from "@/lib/cms/destinations";
+import { getDestinationBySlug, getRelatedDestinations, type Destination } from "@/lib/cms/destinations";
 import { CalendarDays, CloudSun, MapPin, Wallet, Bus, Star } from "lucide-react";
 
 export const Route = createFileRoute("/destinations/$slug")({
