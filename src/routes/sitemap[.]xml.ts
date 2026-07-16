@@ -3,7 +3,7 @@ import type {} from "@tanstack/react-start";
 import { getAllDestinations } from "@/lib/cms/destinations";
 import { getAllPosts } from "@/lib/cms/posts";
 
-const BASE_URL = "https://mntravelnow.com";
+const BASE_URL = "https://www.mntravelnow.com";
 
 interface SitemapEntry {
   path: string;
