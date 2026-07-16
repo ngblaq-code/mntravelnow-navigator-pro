@@ -3,8 +3,7 @@ import type {} from "@tanstack/react-start";
 import { getAllDestinations } from "@/lib/cms/destinations";
 import { getAllPosts } from "@/lib/cms/posts";
 
-// TODO: replace with your project URL once a project name or custom domain is set.
-const BASE_URL = "";
+const BASE_URL = "https://mntravelnow.com";
 
 interface SitemapEntry {
   path: string;
