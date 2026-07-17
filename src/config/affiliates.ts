@@ -27,6 +27,8 @@ export const AFFILIATE_PARTNERS: Record<AffiliateCategory, AffiliatePartner[]> =
   flights: [
     { name: "Aviasales", url: "https://aviasales.tpk.mx/1ayK5N25" },
     { name: "AirHelp", url: "https://airhelp.tpk.mx/9AuGuKVc" },
+    { name: "Compensair", url: "https://compensair.tpk.mx/puJzR81Q" },
+    { name: "Travelpayouts", url: "https://tpk.mx/QNr8IyTm" },
   ],
   hotels: [
     { name: "Klook", url: "https://klook.tpk.mx/gs3HzwWO" },
@@ -38,6 +40,8 @@ export const AFFILIATE_PARTNERS: Record<AffiliateCategory, AffiliatePartner[]> =
   ],
   transfers: [
     { name: "GetRentacar", url: "https://getrentacar.tpk.mx/MxNM3vO8" },
+    { name: "Kiwitaxi", url: "https://kiwitaxi.tpk.mx/QcMhxj20" },
+    { name: "GetTransfer", url: "https://gettransfer.tpk.mx/nEwrdVct" },
   ],
   tours: [
     { name: "KKday", url: "https://kkday.tpk.mx/zQXybZIa" },
@@ -45,6 +49,7 @@ export const AFFILIATE_PARTNERS: Record<AffiliateCategory, AffiliatePartner[]> =
   ],
   insurance: [
     { name: "AirHelp", url: "https://airhelp.tpk.mx/9AuGuKVc" },
+    { name: "Compensair", url: "https://compensair.tpk.mx/puJzR81Q" },
   ],
   packages: [
     { name: "Klook", url: "https://klook.tpk.mx/gs3HzwWO" },
