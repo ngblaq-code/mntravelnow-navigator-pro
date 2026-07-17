@@ -92,6 +92,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         }),
       },
       {
+        async: true,
+        src: "https://www.googletagmanager.com/gtag/js?id=G-WBRW1X45JF",
+      },
+      {
+        id: "ga4-init",
+        children:
+          "window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WBRW1X45JF');",
+      },
+      {
         // Travelpayouts / emrldco loader — injected once via root head.
         // The IIFE appends the real <script> to document.head asynchronously,
         // so it never blocks rendering. A window flag guards against duplicate
